@@ -1,0 +1,19 @@
+{
+  "name": "job-recruitment-platform",
+  "version": "1.0.0",
+  "description": "MVP Full-stack Job Recruitment Platform",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm run dev",
+    "install:all": "npm install && cd server && npm install && cd ../client && npm install",
+    "build": "cd client && npm run build && cd ../server && npm run build"
+  },
+  "keywords": ["job", "recruitment", "platform"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
+
