@@ -90,10 +90,10 @@ cd discrete_project/ai-recruiter
 ```bash
 cd server
 
-# Create a virtual environment (recommended)
+# Create a virtual environment (recommended) if it does not exist
 python -m venv .venv
 
-# Activate virtual environment
+# Activate virtual environment: Only do this if the repository does not contain an existing .venv file
 # On Windows:
 .venv\Scripts\activate
 # On macOS/Linux:
