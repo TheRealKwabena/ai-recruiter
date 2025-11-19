@@ -57,7 +57,6 @@ A modern full-stack web application for intelligent job recruitment and candidat
 - **Zustand** - Lightweight state management
 - **Axios** - HTTP client
 - **Tailwind CSS** - Utility-first CSS framework
-- **date-fns** - Date formatting utilities
 
 ### Backend
 - **FastAPI** - Modern Python web framework
@@ -93,7 +92,7 @@ cd server
 # Create a virtual environment (recommended) if it does not exist
 python -m venv .venv
 
-# Activate virtual environment: Only do this if the repository does not contain an existing .venv file
+# Activate virtual environment: Only do this if repository does not contain a .venv file
 # On Windows:
 .venv\Scripts\activate
 # On macOS/Linux:
