@@ -103,10 +103,11 @@ pip install -r requirements.txt
 
 pip install google-generativeai PyPDF2 python-docx python-dotenv
 
-pip install "fastapi[standard]"
+
 
 pip uninstall bcrypt
 pip install "bcrypt==3.2.0"
+pip install "fastapi[standard]"
 ```
 
 3. **Set up the frontend:**
