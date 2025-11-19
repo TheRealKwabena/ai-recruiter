@@ -81,7 +81,7 @@ A modern full-stack web application for intelligent job recruitment and candidat
 
 1. **Clone the repository:**
 ```bash
-git clone <repository-url>
+git clone https://github.com/TheRealKwabena/ai-recruiter.git
 cd discrete_project/ai-recruiter
 ```
 
@@ -101,6 +101,12 @@ source .venv/bin/activate
 
 # Install Python dependencies
 pip install -r requirements.txt
+
+
+pip install google-generativeai PyPDF2 python-docx python-dotenv
+
+pip uninstall bcrypt
+pip install "bcrypt==3.2.0"
 ```
 
 3. **Set up the frontend:**
