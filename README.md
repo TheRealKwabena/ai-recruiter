@@ -81,7 +81,6 @@ A modern full-stack web application for intelligent job recruitment and candidat
 1. **Clone the repository:**
 ```bash
 git clone https://github.com/TheRealKwabena/ai-recruiter.git
-cd discrete_project/ai-recruiter
 ```
 
 2. **Set up the backend:**
@@ -234,8 +233,9 @@ ai-recruiter/
   - Triggers automatic email notification on status change
 
 ### Users
-- `GET /users` - List all users (Admin only)
-- `GET /users/{user_id}` - Get user by ID (Admin only)
+- `GET /users` - List all users (Admin/Employer only)
+- `GET /users/{user_id}` - Get user by ID (Admin/ Employer only)
+- `DELETE /users/{user_id}` - Delete user by ID (Admin)
 
 ## Key Features Explained
 
