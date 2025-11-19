@@ -124,12 +124,10 @@ npm install
 Create a `server/.env` file:
 
 ```env
-# Database
-DATABASE_URL=sqlite:///./ai_recruiter.db
-
-# JWT Authentication
-SECRET_KEY=your-super-secret-jwt-key-change-this-in-production
+SECRET_KEY=00652ddfb728f3e2552ea4d5a30033ccaeb0a860e8f2680a84b4e37576219d6f
 ACCESS_TOKEN_EXPIRE_MINUTES=30
+DATABASE_URL=sqlite:///./ai_recruiter.db
+GOOGLE_API_KEY=AIzaSyCaVu1ZFuw_nuRO4dZxx3531s3Wp7h4ZQ0
 
 # SMTP Email Configuration (optional - emails won't send without this)
 SMTP_HOST=smtp.gmail.com
