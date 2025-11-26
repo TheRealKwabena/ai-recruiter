@@ -32,4 +32,3 @@ server/prisma/migrations/
 # Vite
 client/dist/
 client/.vite/
-

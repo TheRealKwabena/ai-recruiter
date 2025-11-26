@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 
-const logos = ['Netflix', 'LinkedIn', 'Microsoft', 'Samsung', 'Coca-Cola'];
+const logos = ['Home Depot', 'FedEx', 'Caterpillar', 'Target', 'UPS'];
 
 const featuredTalent = [
-  { name: 'James Samerton', role: 'Mobile Developer', type: 'Top 1% candidate', gradient: 'from-emerald-300/60 via-emerald-500/70 to-emerald-900/80' },
-  { name: 'Queen Raturly', role: 'Digital Marketing', type: 'Already tested', gradient: 'from-sky-200/70 via-sky-400/70 to-sky-900/80' },
-  { name: 'Wanderson James', role: 'Product Designer', type: 'Ready to start', gradient: 'from-lime-200/70 via-lime-500/70 to-emerald-900/80' },
-  { name: 'Sabina Uliyana', role: 'UI/UX Designer', type: 'Portfolio verified', gradient: 'from-teal-200/70 via-teal-400/70 to-emerald-900/80' },
+  { name: 'Marco Ruiz', role: 'Journeyman Electrician', type: 'OSHA verified', gradient: 'from-emerald-300/60 via-emerald-500/70 to-emerald-900/80' },
+  { name: 'Keisha Brown', role: 'CDL Class A Driver', type: 'DOT certified', gradient: 'from-sky-200/70 via-sky-400/70 to-sky-900/80' },
+  { name: 'Luis Hernandez', role: 'HVAC Technician', type: 'Ready for dispatch', gradient: 'from-lime-200/70 via-lime-500/70 to-emerald-900/80' },
+  { name: 'Sophia Patel', role: 'Warehouse Supervisor', type: 'Leadership endorsed', gradient: 'from-teal-200/70 via-teal-400/70 to-emerald-900/80' },
 ];
 
 const benefits = [
@@ -28,9 +28,9 @@ const benefits = [
 ];
 
 const stats = [
-  { value: '3.4k', label: 'Active candidates' },
-  { value: '150+', label: 'Job categories' },
-  { value: '92%', label: 'Offer acceptance' },
+  { value: '5.2k', label: 'Skilled workers ready' },
+  { value: '210+', label: 'Trades & job families' },
+  { value: '48hr', label: 'Average time-to-fill' },
 ];
 
 const Landing = () => {
@@ -62,12 +62,12 @@ const Landing = () => {
         <main className="mt-16 space-y-24">
           <section className="grid gap-10 rounded-[32px] bg-hero-gradient px-8 py-14 text-white lg:grid-cols-[minmax(0,1fr)_420px]">
             <div className="space-y-6">
-              <span className="pill bg-white/20 text-white">The all-in-one hiring platform</span>
+              <span className="pill bg-white/20 text-white">America’s skilled labor network</span>
               <h1 className="text-4xl font-semibold leading-tight lg:text-5xl">
-                Find the best people for candidates in your startup
+                Hire dependable blue-collar crews in days, not weeks
               </h1>
               <p className="text-lg text-white/80">
-                Get more sales and maximize conversion rates. Discover the optimal match for your startup and get the best results together.
+                Dispatch licensed electricians, HVAC techs, CDL drivers, warehouse leads, and facility teams that pass background, reference, and safety checks.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link to="/signup" className="btn-primary bg-white text-primary-700 hover:bg-white/90 shadow-lg">
@@ -127,32 +127,32 @@ const Landing = () => {
 
           <section id="talent" className="grid gap-8 rounded-[32px] border border-white/60 bg-white/90 p-8 shadow-soft-card lg:grid-cols-2">
             <div className="space-y-6">
-              <span className="pill bg-primary-50 text-primary-700">Leverage global talent</span>
+              <span className="pill bg-primary-50 text-primary-700">Leverage field talent</span>
               <h2 className="text-3xl font-semibold text-charcoal">
-                We’re always here. Employees come and go.
+                Crews when you need them. Reliable shifts every day.
               </h2>
               <p className="text-charcoal/70">
-                Keep a living pipeline of vetted designers, engineers, and operators ready when your next role opens. Spend less time sourcing and more time closing offers.
+                Keep a living pipeline of vetted tradespeople, CDL drivers, material handlers, and facility teams ready when your next shift opens.
               </p>
               <ul className="space-y-3 text-sm text-charcoal/80">
-                <li className="flex items-center gap-3"><span className="text-primary-500">●</span> Dedicated talent partners</li>
-                <li className="flex items-center gap-3"><span className="text-primary-500">●</span> Pre-built scorecards for every role</li>
-                <li className="flex items-center gap-3"><span className="text-primary-500">●</span> Interview-ready candidates in 2 days</li>
+                <li className="flex items-center gap-3"><span className="text-primary-500">●</span> OSHA & background screening completed</li>
+                <li className="flex items-center gap-3"><span className="text-primary-500">●</span> Licenses and certifications re-verified every 90 days</li>
+                <li className="flex items-center gap-3"><span className="text-primary-500">●</span> Interview-ready workers in under 48 hours</li>
               </ul>
             </div>
             <div className="glass-panel p-6">
               <div className="rounded-2xl bg-charcoal p-6 text-white shadow-2xl">
-                <p className="text-sm text-white/70">UI/UX Role · $95k</p>
-                <p className="mt-2 text-2xl font-semibold">Review Proposal</p>
-                <p className="text-sm text-white/60">Beneema Rezian · 2 days ago</p>
+                <p className="text-sm text-white/70">Night Shift · Distribution Center</p>
+                <p className="mt-2 text-2xl font-semibold">Crew Assignment</p>
+                <p className="text-sm text-white/60">3 Forklift Leads · 2 days ago</p>
                 <div className="mt-6 space-y-3 text-sm text-white/80">
                   <p className="flex items-center justify-between">
-                    <span>Fulltime</span>
-                    <span>Remote friendly</span>
+                    <span>Full-time</span>
+                    <span>Onsite</span>
                   </p>
                   <p className="flex items-center justify-between">
-                    <span>150 candidates</span>
-                    <span>Already tested</span>
+                    <span>28 workers</span>
+                    <span>Ready to dispatch</span>
                   </p>
                 </div>
               </div>
@@ -161,13 +161,13 @@ const Landing = () => {
 
           <section className="grid gap-8 rounded-[32px] border border-white/60 bg-white/90 p-8 shadow-soft-card lg:grid-cols-[1fr_360px]">
             <div>
-              <p className="text-sm font-semibold text-primary-600">Find curated talent</p>
-              <h3 className="mt-3 text-3xl font-semibold text-charcoal">Search candidates</h3>
+              <p className="text-sm font-semibold text-primary-600">Find the right trade</p>
+              <h3 className="mt-3 text-3xl font-semibold text-charcoal">Search crews by license, shift, or region</h3>
               <p className="mt-2 text-charcoal/70">
-                Filter by seniority, time zone, and specialization. Send a personalized brief to every shortlisted candidate in one click.
+                Filter by craft, shift availability, pay range, or location. Send one brief to every qualified worker instantly.
               </p>
               <div className="mt-6 flex flex-wrap gap-4">
-                {['Fulltime', 'Part time', 'Remote', 'Onsite'].map((tag) => (
+                {['Electrician', 'HVAC', 'Logistics', 'Drivers'].map((tag) => (
                   <button key={tag} className="btn-secondary px-6 py-2">
                     {tag}
                   </button>
@@ -175,9 +175,9 @@ const Landing = () => {
               </div>
             </div>
             <div className="glass-panel p-6">
-              <p className="text-sm font-medium text-charcoal/80">Senior UI/UX Designer</p>
-              <input className="input-field mt-4" placeholder="Search by skill, role, location" type="text" />
-              <button className="btn-primary mt-4 w-full">See 150 candidates</button>
+              <p className="text-sm font-medium text-charcoal/80">Journeyman Electrician</p>
+              <input className="input-field mt-4" placeholder="Search by trade, license, city" type="text" />
+              <button className="btn-primary mt-4 w-full">View 120 available workers</button>
             </div>
           </section>
 

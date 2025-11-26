@@ -15,6 +15,7 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { cn } from '@/lib/utils';
 
 interface Job {
   id: string;
@@ -54,6 +55,7 @@ const ActiveJobs = () => {
   const [resumeFile, setResumeFile] = useState<File | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [feedback, setFeedback] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const [expandedJobId, setExpandedJobId] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -165,6 +167,10 @@ const ActiveJobs = () => {
     }
   };
 
+  const toggleJobDetails = (jobId: string) => {
+    setExpandedJobId((prev) => (prev === jobId ? null : jobId));
+  };
+
   if (loading) {
     return (
       <div className="flex h-64 items-center justify-center">
@@ -263,46 +269,96 @@ const ActiveJobs = () => {
           </div>
 
           <div className="space-y-4">
-            {filteredJobs.map((job) => (
-              <Card key={job.id} className="p-5 shadow-none border border-primary-50 bg-white">
-                <CardHeader className="mb-0 gap-2">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <CardTitle className="text-xl">{job.title}</CardTitle>
-                      <CardDescription>{job.company} · {job.location}</CardDescription>
+            {filteredJobs.map((job) => {
+              const isExpanded = expandedJobId === job.id;
+
+              return (
+                <Card key={job.id} className="p-5 shadow-none border border-primary-50 bg-white">
+                  <CardHeader className="mb-0 gap-3">
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <CardTitle className="text-xl">{job.title}</CardTitle>
+                        <CardDescription>{job.company} · {job.location}</CardDescription>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <Badge variant="outline">{format(new Date(job.created_at), 'MMM dd')}</Badge>
+                        <button
+                          type="button"
+                          onClick={() => toggleJobDetails(job.id)}
+                          className="rounded-full border border-primary-50 bg-primary-50/40 p-2 text-primary-700 transition hover:bg-primary-100"
+                          aria-label={isExpanded ? 'Collapse job details' : 'Expand job details'}
+                        >
+                          <svg
+                            className={cn('h-4 w-4 transition-transform', isExpanded && 'rotate-180')}
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </button>
+                      </div>
                     </div>
-                    <Badge variant="outline">{format(new Date(job.created_at), 'MMM dd')}</Badge>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {(job.required_skills ?? []).slice(0, 3).map((skill) => (
-                      <Badge key={skill} className="bg-primary-50 text-primary-700">{skill}</Badge>
-                    ))}
-                  </div>
-                </CardHeader>
-                <CardContent className="text-sm text-charcoal/70 line-clamp-3">
-                  {job.description}
-                </CardContent>
-                <CardFooter className="mt-4 flex flex-wrap gap-3 text-sm text-charcoal/60">
-                  <span>Track: {job.role}</span>
-                  <span>Applicants ready: 150+</span>
-                  <div className="ml-auto flex gap-3">
-                    {isAdmin ? (
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        onClick={() => navigate(`/jobs/${job.id}/applications`)}
-                      >
-                        View applicants
-                      </Button>
-                    ) : (
-                      <Button size="sm" onClick={() => setApplyJob(job)}>
-                        Apply now
-                      </Button>
+                    <div className="flex flex-wrap gap-2">
+                      {(job.required_skills ?? []).slice(0, 3).map((skill) => (
+                        <Badge key={skill} className="bg-primary-50 text-primary-700">{skill}</Badge>
+                      ))}
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-4 text-sm text-charcoal/70">
+                    <p className={cn(!isExpanded && 'line-clamp-3')}>
+                      {job.description}
+                    </p>
+                    {isExpanded && (
+                      <>
+                        {!!(job.required_skills?.length) && (
+                          <div>
+                            <p className="text-xs font-semibold uppercase tracking-widest text-charcoal/50">Must-have skills</p>
+                            <div className="mt-2 flex flex-wrap gap-2">
+                              {(job.required_skills ?? []).map((skill) => (
+                                <Badge key={skill} className="bg-primary-50 text-primary-700">{skill}</Badge>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        {!!(job.required_certifications?.length) && (
+                          <div>
+                            <p className="text-xs font-semibold uppercase tracking-widest text-charcoal/50">Certifications</p>
+                            <div className="mt-2 flex flex-wrap gap-2">
+                              {(job.required_certifications ?? []).map((cert) => (
+                                <Badge key={cert} className="bg-white/90 text-charcoal border border-primary-100">{cert}</Badge>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        <div className="rounded-2xl bg-primary-50/60 px-4 py-3 text-xs text-primary-900">
+                          Posted {format(new Date(job.created_at), 'MMMM dd, yyyy')}
+                        </div>
+                      </>
                     )}
-                  </div>
-                </CardFooter>
-              </Card>
-            ))}
+                  </CardContent>
+                  <CardFooter className="mt-4 flex flex-wrap gap-3 text-sm text-charcoal/60">
+                    <span>Track: {job.role}</span>
+                    <span>Applicants ready: 150+</span>
+                    <div className="ml-auto flex gap-3">
+                      {isAdmin ? (
+                        <Button
+                          variant="secondary"
+                          size="sm"
+                          onClick={() => navigate(`/jobs/${job.id}/applications`)}
+                        >
+                          View applicants
+                        </Button>
+                      ) : (
+                        <Button size="sm" onClick={() => setApplyJob(job)}>
+                          Apply now
+                        </Button>
+                      )}
+                    </div>
+                  </CardFooter>
+                </Card>
+              );
+            })}
             {filteredJobs.length === 0 && (
               <Card className="text-center text-sm text-charcoal/70">
                 No roles match your filters just yet. Try broadening your search.
