@@ -57,7 +57,6 @@ A modern full-stack web application for intelligent job recruitment and candidat
 - **Zustand** - Lightweight state management
 - **Axios** - HTTP client
 - **Tailwind CSS** - Utility-first CSS framework
-- **date-fns** - Date formatting utilities
 
 ### Backend
 - **FastAPI** - Modern Python web framework
@@ -82,7 +81,6 @@ A modern full-stack web application for intelligent job recruitment and candidat
 1. **Clone the repository:**
 ```bash
 git clone https://github.com/TheRealKwabena/ai-recruiter.git
-cd discrete_project/ai-recruiter
 ```
 
 2. **Set up the backend:**
@@ -90,10 +88,10 @@ cd discrete_project/ai-recruiter
 ```bash
 cd server
 
-# Create a virtual environment (recommended)
+# Create a virtual environment (recommended) if it does not exist
 python -m venv .venv
 
-# Activate virtual environment
+# Activate virtual environment: Only do this if repository does not contain a .venv file
 # On Windows:
 .venv\Scripts\activate
 # On macOS/Linux:
@@ -105,8 +103,11 @@ pip install -r requirements.txt
 
 pip install google-generativeai PyPDF2 python-docx python-dotenv
 
+
+
 pip uninstall bcrypt
 pip install "bcrypt==3.2.0"
+pip install "fastapi[standard]"
 ```
 
 3. **Set up the frontend:**
@@ -123,12 +124,10 @@ npm install
 Create a `server/.env` file:
 
 ```env
-# Database
+SECRET_KEY=00652ddfb728f3e2552ea4d5a30033ccaeb0a860e8f2680a84b4e37576219d6f
+ACCESS_TOKEN_EXPIRE_MINUTES=30
 DATABASE_URL=sqlite:///./ai_recruiter.db
 
-# JWT Authentication
-SECRET_KEY=your-super-secret-jwt-key-change-this-in-production
-ACCESS_TOKEN_EXPIRE_MINUTES=30
 
 # SMTP Email Configuration (optional - emails won't send without this)
 SMTP_HOST=smtp.gmail.com
@@ -148,8 +147,6 @@ The database will be automatically created on first run. The FastAPI app creates
 **Terminal 1 - Backend:**
 ```bash
 cd server
-python main.py
-# Or with uvicorn:
 uvicorn main:app --reload --port 8000
 ```
 
@@ -235,8 +232,9 @@ ai-recruiter/
   - Triggers automatic email notification on status change
 
 ### Users
-- `GET /users` - List all users (Admin only)
-- `GET /users/{user_id}` - Get user by ID (Admin only)
+- `GET /users` - List all users (Admin/Employer only)
+- `GET /users/{user_id}` - Get user by ID (Admin/ Employer only)
+- `DELETE /users/{user_id}` - Delete user by ID (Admin)
 
 ## Key Features Explained
 
